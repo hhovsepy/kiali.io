@@ -58,6 +58,7 @@ spec:
       scopes: ["openid", "profile", "email"]
       username_claim: "sub"
     openshift:
+      #redirect_uris:
       #token_inactivity_timeout:
       #token_max_age:
 
@@ -238,6 +239,7 @@ spec:
     pod_labels:
       sidecar.istio.io/inject: "true"
     priority_class_name: ""
+    remote_cluster_resources_only: false
     replicas: 1
     # default: resources is undefined
     resources:
@@ -952,6 +954,39 @@ For additional help in using this validation tool, pass it the `--help` option.
 
 <div class="property-description">
 <p>To learn more about these settings and how to configure the OpenShift authentication strategy, read the documentation at <a href="https://kiali.io/docs/configuration/authentication/openshift/">https://kiali.io/docs/configuration/authentication/openshift/</a></p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.auth.openshift.redirect_uris">.spec.auth.openshift.redirect_uris</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(array)</span>
+
+</div>
+
+<div class="property-description">
+<p>The OAuthClient redirect URIs. You normally do not have to set this unless you are creating remote cluster resources (see <code>deployment.remote_cluster_resources_only</code>) with <code>auth.strategy</code> set to <code>openshift</code>.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.auth.openshift.redirect_uris[*]">.spec.auth.openshift.redirect_uris[*]</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(string)</span>
 
 </div>
 
@@ -2565,6 +2600,25 @@ An example use for this setting is to inject an Istio sidecar such as,</p>
 
 <div class="property-description">
 <p>The priorityClassName used to assign the priority of the Kiali pod.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.remote_cluster_resources_only">.spec.deployment.remote_cluster_resources_only</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(boolean)</span>
+
+</div>
+
+<div class="property-description">
+<p>When <code>true</code>, only those resources necessary for a remote Kiali Server to access this cluster are created (such as the service account and roles/bindings). There will be no Kiali Server deployment/pod created when this is <code>true</code>.</p>
 
 </div>
 
