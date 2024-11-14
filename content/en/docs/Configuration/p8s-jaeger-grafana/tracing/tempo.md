@@ -5,6 +5,28 @@ description: >
 weight: 2
 ---
 
+- [Grafana Tempo Configuration](#grafana-tempo-configuration)
+    - [Using the Grafana Tempo API](#using-the-grafana-tempo-api)
+      - [Setup the Kiali CR](#set-up-the-kiali-cr)
+      - [Set up a Tempo Datasource in Grafana](#set-up-a-tempo-datasource-in-grafana)
+      - [Additional Configuration](#additional-configuration)
+      - [Service check URL](#service-check-url)
+      - [Configuration for the Grafana Tempo Datasource](#configuration-for-the-grafana-tempo-datasource)
+    - [Using the Jaeger frontend with Grafana Tempo tracing backend](#using-the-jaeger-frontend-with-grafana-tempo-tracing-backend)
+      - [Tanka](#tanka)
+      - [Tempo Operator](#tempo-operator)
+- [Configuration table](#configuration-table) 
+  - [Supported Versions](#supported-versions) 
+  - [Minimal configuration for Kiali <= 1.79](#minimal-configuration-for-kiali--179)
+  - [Minimal configuration for Kiali > 1.79](#minimal-configuration-for-kiali--179-1)
+- [Tempo tuning](#tempo-tuning) 
+  - [Resources consumption](#resources-consumption) 
+  - [Caching](#caching)
+  - [Resources consumption](#tune-search-pipeline)
+  - [Dedicated attribute columns](#dedicated-attribute-columns)
+- [Tempo authentication configuration](#tempo-authentication-configuration)
+
+
 ## Grafana Tempo Configuration
 
 There are two possibilities to integrate Kiali with Grafana Tempo:
@@ -236,6 +258,62 @@ In `external_services.tracing`
 |--------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Jaeger | `.internal_url = 'http://jaeger_service_url:16686/jaeger'`<br/> `.use_grpc = false` <hr>                  | `.internal_url = 'http://jaeger_service_url:16685/jaeger'` <br>`.use_grpc = true (Not required: by default)`<br><hr>                                           | 
 | Tempo  | <br/>`internal_url = 'http://query_frontend_url:3200'`<br/> `.use_grpc = false`<br/> `.provider = 'tempo'`<br/><hr> | `.internal_url = 'http://query_frontend_url:3200'`<br/> `.grpc_port: 9095` <br/>`.provider: 'tempo'`<br/>`.use_grpc = true (Not required: by default)`<hr> |
+
+### Tempo tuning
+
+#### Resources consumption
+
+Grafana Tempo is a powerful tool, but it can lead to performance issues when not configured correctly. 
+For example, the following configuration is not recommended and may lead to OOM issues for simple queries in the query-frontend component: 
+
+```yaml
+spec:
+  resources:
+    total:
+      limits:
+        memory: 2Gi
+        cpu: 2000m
+```
+
+These resources are shared between all the Tempo components. 
+When needed, apply resources to each specific component, instead of applying the resources globally:
+
+```yaml
+spec:
+  template:
+    queryFrontend:
+      component:
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+```
+
+[This Grafana Dashboard](/files/tempo-dashboard.json) is available to measure the resources used in the **tempo** namespace. 
+
+#### Caching
+
+Tempo offers multi-level [caching](https://grafana.com/docs/tempo/latest/operations/caching/) that is used by default with Tanka and Helm deployment examples. It uses external cache, supporting Memcached and Redis. 
+The lower level cache has a higher hit rate, and caches bloom filters and parquet data.
+The higher level caches frontend-search data.
+
+Optimizing the cache depends on the application usage, and can be done modifying different parameters:
+
+- Connection limit for MemCached: Should be increased in large deployments, as MemCached is set to 1024 by default.
+- Cache size control: Should be increased when the working set is larger than the size of cache.
+
+#### Tune search pipeline
+
+There are many parameters to [tune the search pipeline](https://grafana.com/docs/tempo/latest/operations/backend_search/), some of these:
+
+- max_concurrent_queries: If it is too high it can cause OOM. 
+- concurrent_jobs: How many jobs are done concurrently.
+- max_retries: When it is too high it can result in a lot of load. 
+
+#### Dedicated attribute columns
+
+When using the vParquet3 storage format , defining [dedicated attribute columns](https://grafana.com/docs/tempo/latest/operations/dedicated_columns/) can improve the query performance. 
+In order to best choose those columns (Up to 10), a good criteria is to choose attributes that contribute growing the block size (And not those commonly used).
 
 ### Tempo authentication configuration
 
