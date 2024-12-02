@@ -239,6 +239,17 @@ spec:
     pod_labels:
       sidecar.istio.io/inject: "true"
     priority_class_name: ""
+    probes:
+      liveness:
+        initial_delay_seconds: 5
+        period_seconds: 30
+      readiness:
+        initial_delay_seconds: 5
+        period_seconds: 30
+      startup:
+        failure_threshold: 6
+        initial_delay_seconds: 30
+        period_seconds: 10
     remote_cluster_resources_only: false
     replicas: 1
     # default: resources is undefined
@@ -2600,6 +2611,180 @@ An example use for this setting is to inject an Istio sidecar such as,</p>
 
 <div class="property-description">
 <p>The priorityClassName used to assign the priority of the Kiali pod.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-2">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes">.spec.deployment.probes</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(object)</span>
+
+</div>
+
+<div class="property-description">
+<p>Configures the liveness, readiness, and startup probes of the Kiali pod.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.liveness">.spec.deployment.probes.liveness</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(object)</span>
+
+</div>
+
+<div class="property-description">
+<p>Configures the liveness probe of the Kiali pod.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.liveness.initial_delay_seconds">.spec.deployment.probes.liveness.initial_delay_seconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.liveness.period_seconds">.spec.deployment.probes.liveness.period_seconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.readiness">.spec.deployment.probes.readiness</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(object)</span>
+
+</div>
+
+<div class="property-description">
+<p>Configures the readiness probe of the Kiali pod.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.readiness.initial_delay_seconds">.spec.deployment.probes.readiness.initial_delay_seconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.readiness.period_seconds">.spec.deployment.probes.readiness.period_seconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-3">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.startup">.spec.deployment.probes.startup</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(object)</span>
+
+</div>
+
+<div class="property-description">
+<p>Configures the startup probe of the Kiali pod.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.startup.failure_threshold">.spec.deployment.probes.startup.failure_threshold</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.startup.initial_delay_seconds">.spec.deployment.probes.startup.initial_delay_seconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.deployment.probes.startup.period_seconds">.spec.deployment.probes.startup.period_seconds</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
 
 </div>
 
