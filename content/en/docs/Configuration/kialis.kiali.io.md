@@ -413,6 +413,8 @@ spec:
         cluster: "cluster-east"
       query_timeout: 5
       tempo_config:
+        cache_capacity: 200
+        cache_enabled: true
         datasource_uid: ""
         org_id: ""
         url_format: ""
@@ -465,7 +467,10 @@ spec:
           expression: "healthy"
         - description: "Hide: unknown nodes"
           expression: "name = unknown"
+        settings:
+          animation: "point"
         traffic:
+          ambient: "total"
           grpc: "requests"
           http: "requests"
           tcp: "sent"
@@ -5380,6 +5385,44 @@ to <code>secret:myGrafanaCredentials:myGrafanaPw</code>.</p>
 <div class="property depth-4">
 <div class="property-header">
 <hr/>
+<h3 class="property-path" id=".spec.external_services.tracing.tempo_config.cache_capacity">.spec.external_services.tracing.tempo_config.cache_capacity</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(integer)</span>
+
+</div>
+
+<div class="property-description">
+<p>When <code>cache_enabled</code> is true, the number of traces saved in the cache. 200 by default.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.external_services.tracing.tempo_config.cache_enabled">.spec.external_services.tracing.tempo_config.cache_enabled</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(boolean)</span>
+
+</div>
+
+<div class="property-description">
+<p>A FIFO cache with the last <code>cache_capacity</code> traces viewed.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
 <h3 class="property-path" id=".spec.external_services.tracing.tempo_config.datasource_uid">.spec.external_services.tracing.tempo_config.datasource_uid</h3>
 </div>
 <div class="property-body">
@@ -6281,6 +6324,44 @@ to <code>secret:myGrafanaCredentials:myGrafanaPw</code>.</p>
 <div class="property depth-4">
 <div class="property-header">
 <hr/>
+<h3 class="property-path" id=".spec.kiali_feature_flags.ui_defaults.graph.settings">.spec.kiali_feature_flags.ui_defaults.graph.settings</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(object)</span>
+
+</div>
+
+<div class="property-description">
+<p>Various presentation options.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.kiali_feature_flags.ui_defaults.graph.settings.animation">.spec.kiali_feature_flags.ui_defaults.graph.settings.animation</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(string)</span>
+
+</div>
+
+<div class="property-description">
+<p>The traffic animation style. Value must be one of: <code>dash</code> or <code>point</code>. Default is <code>point</code>.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-4">
+<div class="property-header">
+<hr/>
 <h3 class="property-path" id=".spec.kiali_feature_flags.ui_defaults.graph.traffic">.spec.kiali_feature_flags.ui_defaults.graph.traffic</h3>
 </div>
 <div class="property-body">
@@ -6291,6 +6372,25 @@ to <code>secret:myGrafanaCredentials:myGrafanaPw</code>.</p>
 
 <div class="property-description">
 <p>These settings determine which rates are used to determine graph traffic.</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="property depth-5">
+<div class="property-header">
+<hr/>
+<h3 class="property-path" id=".spec.kiali_feature_flags.ui_defaults.graph.traffic.ambient">.spec.kiali_feature_flags.ui_defaults.graph.traffic.ambient</h3>
+</div>
+<div class="property-body">
+<div class="property-meta">
+<span class="property-type">(string)</span>
+
+</div>
+
+<div class="property-description">
+<p>Ambient traffic is reported by ztunnel and/or waypoints. Value must be one of: <code>none</code>, <code>total</code>, <code>waypoint</code>, or <code>ztunnel</code>.</p>
 
 </div>
 
