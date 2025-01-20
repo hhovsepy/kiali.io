@@ -1162,4 +1162,23 @@ Correct the template to refer to an existing Service Account from the same names
 
 #### See Also
 
+- [Istio documentation](https://istio.io/latestdocs/reference/config/networking/workload-group)
+
+### KIA1702 - More than one Workload Group with duplicate labels found in the same namespace
+
+The set of labels from Workload Group spec metadata will be associated with each workload instance during the bootstrap process.
+
+A validation Warning message means that, the labels set in this Workload Group spec metadata also are used in other Workload Group in this namespace.
+
+#### Resolution
+
+Set a unique set of labels.
+
+#### Severity
+
+<i class="fas fa-exclamation-triangle text-warning"></i> Warning
+
+#### See Also
+
 - [Istio documentation](https://istio.io/latest/docs/reference/config/networking/workload-group)
+"content/en/docs/Features/validations.md" 1165L, 57207B
