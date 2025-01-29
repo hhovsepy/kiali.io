@@ -1144,7 +1144,7 @@ This is a generic rule implemented by the Gateway, and each particular error sho
 
 ### KIA1701 - Service Account not found in this namespace
 
-WorkloadGroup describes a collection of workload instances. It enables specifying the properties of a single workload for bootstrap and provides a template for WorkloadEntry by using the specified service account from the same namespace.
+WorkloadGroup describes a collection of workload instances. It enables specifying the properties of a single workload for bootstrap and provides a template for WorkloadEntry, using the specified service account from the same namespace.
 
 A validation Warning message on a template means that, while the specified serviceAccount may exist, it is not referenced by any Pod in the same namespace.
 
