@@ -1162,7 +1162,7 @@ Correct the template to refer to an existing Service Account from the same names
 
 #### See Also
 
-- [Istio documentation](https://istio.io/latestdocs/reference/config/networking/workload-group)
+- [Istio documentation](https://istio.io/latest/docs/reference/config/networking/workload-group)
 
 ### KIA1702 - More than one Workload Group with duplicate labels found in the same namespace
 
