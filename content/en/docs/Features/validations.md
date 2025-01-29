@@ -1168,7 +1168,7 @@ Correct the template to refer to an existing Service Account from the same names
 
 The set of labels from Workload Group spec metadata will be associated with each workload instance during the bootstrap process.
 
-A validation Warning message means that, the labels set in this Workload Group spec metadata also are used in other Workload Group in this namespace.
+A validation Warning message means that the labels set in this Workload Group spec metadata are also used in other Workload Group within this namespace.
 
 #### Resolution
 
