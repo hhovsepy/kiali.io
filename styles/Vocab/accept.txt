@@ -1,4 +1,6 @@
+configmap
+Istio
+istiod
 Kiali
 Patternfly
-configmap
-istiod
+namespaces
