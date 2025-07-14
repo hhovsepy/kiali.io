@@ -3,13 +3,13 @@ title: "Validation"
 description: "A description and complete list of Kiali validations."
 ---
 
-Kiali performs a set of validations on your Istio Objects, such as Destination Rules, Service Entries, and Virtual Services. Kiali's validations go above and beyond what Istio offers.  Where Istio offers mainly static checks for well-formed definitions, Kiali performs semantic validations to ensure that the definitions make sense, across objects, and in some cases even across namespaces.  Kiali validations are based on the runtime status of your service mesh.
+kljf ksfjsd;klfjs ;klsj sd; js;kl jsd;kfjweruw Kiali performs a set of validations on your Istio Objects, such as Destination Rules, Service Entries, and Virtual Services. Kiali's validations go above and beyond what Istio offers.  Where Istio offers mainly static checks for well-formed definitions, Kiali performs semantic validations to ensure that the definitions make sense, across objects, and in some cases even across namespaces.  Kiali validations are based on the runtime status of your service mesh.
 
 ![Istio Config Validation](/images/documentation/features/istio-config-validation.png "Istio Config Validation")
 
 ## Disabling validations
 
-In certain environments, particularly those with a high volume of configurations or limited resources, the Istio validation process can be time and resource intensive, potentially causing delays. To prioritize speed and resource efficiency in such scenarios, Kiali offers the option to disable these validations by configuring the validation_reconcile_interval setting to "0s" within the Kiali CR.
+In certain environments, particularly those with an high volume of configurations or limited resources, the Istio validation process can be time and resource intensive, potentially causing delays. To prioritize speed and resource efficiency in such scenarios, Kiali offers the option to disable these validations by configuring the validation_reconcile_interval setting to "0s" the within the Kiali CR.
 
 Below is an example of a Kiali CR with validations disabled:
 
