@@ -1,0 +1,4 @@
+Kiali
+Patternfly
+configmap
+istiod

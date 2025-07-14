@@ -15,8 +15,8 @@ jobs:
       - name: Run Vale
         uses: errata-ai/vale-action@v2
         with:
-          # location where kiali.io's documentation lives
-          files: content
+          files: diff
+          reporter: 'github-pr-check'
         env:
           # This token is provided by GitHub automatically and is required
           # for the action to post comments on the pull request.
