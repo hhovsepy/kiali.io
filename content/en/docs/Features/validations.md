@@ -9,7 +9,7 @@ Kiali performs a set of validations on your Istio Objects, such as Destination R
 
 ## Disabling validations
 
-In certain environments, particularly those with a high volume of configurations or limited resources, the Istio validation process can be time and resource intensive, potentially causing delays. To prioritize speed and resource efficiency in such scenarios, Kiali offers the option to disable these validations by configuring the validation_reconcile_interval setting to "0s" within the Kiali CR.
+In certain environments, particularly those with an high volume of configurations or limited resources, the Istio validation process can be time and resource intensive, potentially causing delays. To prioritize speed and resource efficiency in such scenarios, Kiali offers the option to disable these validations by configuring the validation_reconcile_interval setting to "0s" the within the Kiali CR.
 
 Below is an example of a Kiali CR with validations disabled:
 

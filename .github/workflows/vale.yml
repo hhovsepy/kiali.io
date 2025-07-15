@@ -1,0 +1,23 @@
+name: Docs Linter
+
+on:
+  pull_request:
+    branches: [ current, staging ]
+
+jobs:
+  vale:
+    name: Vale
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run Vale
+        uses: errata-ai/vale-action@v2
+        with:
+          files: diff
+          reporter: 'github-pr-check'
+        env:
+          # This token is provided by GitHub automatically and is required
+          # for the action to post comments on the pull request.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
